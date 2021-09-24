@@ -6,7 +6,7 @@
 /**
  * Module Name
  */
-export const NAME = "combat-carousel";
+export const NAME = "combat-carousel-test";
 
 /**
  * Module title
@@ -16,7 +16,7 @@ export const TITLE = "Combat Carousel";
 /**
  * Path to module
  */
-export const PATH = "modules/combat-carousel";
+export const PATH = "modules/combat-carousel-test";
 
 /**
  * Path to templates
@@ -27,9 +27,9 @@ export const TEMPLATE_PATH = `${PATH}/templates`;
  * Module Icon Paths
  */
 export const CAROUSEL_ICONS = {
-    noCombat: "modules/combat-carousel/icons/empty-carousel-solid.svg",
-    noTurns: "modules/combat-carousel/icons/empty-carousel-solid2.svg",
-    hasTurns: "modules/combat-carousel/icons/combat-carousel-solid2.svg"
+    noCombat: "modules/combat-carousel-test/icons/empty-carousel-solid.svg",
+    noTurns: "modules/combat-carousel-test/icons/empty-carousel-solid2.svg",
+    hasTurns: "modules/combat-carousel-test/icons/combat-carousel-solid2.svg"
 }
 
 /**
@@ -49,10 +49,10 @@ export const SETTING_KEYS = {
     bar1Permission: "playerBar1Permission",
     bar1Attribute: "bar1Attribute",
     bar1Title: "bar1Title",
-    showBar0: "showBar0",
-    bar0Permission: "playerBar0Permission",
-    bar0Attribute: "bar0Attribute",
-    bar0Title: "bar0Title",
+    showBar2: "showBar2",
+    bar2Permission: "playerBar2Permission",
+    bar2Attribute: "bar2Attribute",
+    bar2Title: "bar2Title",
     overlaySettings: "overlaySettings",
     carouselSize: "carouselSize",
     showInitiative: "showInitiative",
@@ -130,7 +130,7 @@ export const DEFAULT_CONFIG = {
         top: 0,
         scale: 1.0
     },
-    bar0Permission: {
+    bar2Permission: {
         choices: {
             all: "All",
             owned: "Owned Actors",
@@ -138,8 +138,8 @@ export const DEFAULT_CONFIG = {
             none: "None" 
         }
     },
-    bar0Attribute: "attributes.sp",
-    bar0Title: "SP",
+    bar2Attribute: "attributes.sp",
+    bar2Title: "SP",
     appPosition: {
         left: 120,
         top: 0,

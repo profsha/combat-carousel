@@ -413,7 +413,7 @@ li[data-control="combat-carousel"] i.collapse-indicator {
     height: 10%;
 }
 
-#combat-carousel .bar0 {
+#combat-carousel .bar2 {
     text-align: center;
     height: 10%;
 }
@@ -431,7 +431,7 @@ li[data-control="combat-carousel"] i.collapse-indicator {
     text-align: center;
 }
 
-#combat-carousel .bar0 meter {
+#combat-carousel .bar2 meter {
     --background: rgba(0, 0, 0, 0.5);
     --optimum: cyan;
     --sub-optimum: darkcyan;
@@ -486,12 +486,12 @@ li[data-control="combat-carousel"] i.collapse-indicator {
 }
 
 @supports(-moz-appearance:none) {
-    #combat-carousel .bar0 meter  {
+    #combat-carousel .bar2 meter  {
         background: var(--background);
     }
 }
 
-#combat-carousel .bar0 meter::-moz-meter-bar {
+#combat-carousel .bar2 meter::-moz-meter-bar {
     height: 25%;
     margin-top: 0.25em;
     background: var(--background);
@@ -499,30 +499,30 @@ li[data-control="combat-carousel"] i.collapse-indicator {
     /* box-shadow: 0 2px 2px -2px #333 inset; */
 }
 
-#combat-carousel .bar0 meter:-moz-meter-optimum::-moz-meter-bar {
+#combat-carousel .bar2 meter:-moz-meter-optimum::-moz-meter-bar {
     background: var(--optimum);
 }
 
-#combat-carousel .bar0 meter:-moz-meter-sub-optimum::-moz-meter-bar {
+#combat-carousel .bar2 meter:-moz-meter-sub-optimum::-moz-meter-bar {
     background: var(--sub-optimum);
 }
 
-#combat-carousel .bar0 meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+#combat-carousel .bar2 meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
     background: var(--sub-sub-optimum);
 }
 
-#combat-carousel .bar0 meter::-webkit-meter-bar {
+#combat-carousel .bar2 meter::-webkit-meter-bar {
     background: var(--background);
     border: 2px solid black;
     /* box-shadow: 0 2px 2px -2px #333 inset; */
     height: 100%;
 }
 
-#combat-carousel .bar0 meter::-webkit-meter-optimum-value {
+#combat-carousel .bar2 meter::-webkit-meter-optimum-value {
     background: var(--optimum);
 }
 
-#combat-carousel .bar0 meter::-webkit-meter-suboptimum-value {
+#combat-carousel .bar2 meter::-webkit-meter-suboptimum-value {
     background:var(--sub-optimum);
 }
 
@@ -603,10 +603,14 @@ li[data-control="combat-carousel"] i.collapse-indicator {
     border: 1px solid red;
 }
 
+#combat-carousel .splide__slide {
+    margin-top: 15px;
+}
+
 #combat-carousel .splide__slide:hover:not(.combat-round) {
-    margin: 39px 10px 15px 10px;
-    transform: scale(1.2);
-    height: 168px;
+    /* margin: 39px 10px 15px 10px; */
+    /* transform: scale(1.2); */
+    /* height: 168px; */
 }
 
 #combat-carousel .splide__slide:hover .name {
@@ -658,8 +662,9 @@ li[data-control="combat-carousel"] i.collapse-indicator {
     /* height: 83% !important; */
 }
 
-#combat-carousel .is-active-combatant.card .container {
+#combat-carousel .container {
     /* height: 80%; */
+    height: calc(85% - 15px);
 }
 
 #combat-carousel .fa-dice-d20:hover {

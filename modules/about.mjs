@@ -20,7 +20,7 @@ export default class AboutApp extends FormApplication {
         return mergeObject(super.defaultOptions, {
             id: "combat-carousel-about",
             title: "About Combat Carousel",
-            template: "modules/combat-carousel/templates/about.hbs",
+            template: "modules/combat-carousel-test/templates/about.hbs",
             popOut: true,
             width: 500,
             height: 605
@@ -32,7 +32,7 @@ export default class AboutApp extends FormApplication {
      */
     async getData() {
         return {
-            version: game.modules.get("combat-carousel").data.version,
+            version: game.modules.get("combat-carousel-test").data.version,
             patrons: await this.fetchPatrons()
         }
     }
@@ -41,7 +41,7 @@ export default class AboutApp extends FormApplication {
      * Fetches a list of Patrons to display on the About page
      */
     async fetchPatrons() {
-        const jsonPath = "modules/combat-carousel/patrons.json";
+        const jsonPath = "modules/combat-carousel-test/patrons.json";
         const response = await fetch(jsonPath);
         if (!response.ok) return null;
 

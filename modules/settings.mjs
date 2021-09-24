@@ -259,9 +259,9 @@ export default function registerSettings() {
         }
     });
 
-    game.settings.register(NAME, SETTING_KEYS.showBar0, {
-        name: "COMBAT_CAROUSEL.SETTINGS.ShowBar0N",
-        hint: "COMBAT_CAROUSEL.SETTINGS.ShowBar0H",
+    game.settings.register(NAME, SETTING_KEYS.showBar2, {
+        name: "COMBAT_CAROUSEL.SETTINGS.ShowBar2N",
+        hint: "COMBAT_CAROUSEL.SETTINGS.ShowBar2H",
         scope: "client",
         type: String,
         choices: DEFAULT_CONFIG.showBar.choices,
@@ -272,13 +272,13 @@ export default function registerSettings() {
         }
     });
 
-    game.settings.register(NAME, SETTING_KEYS.bar0Permission, {
-        name: "COMBAT_CAROUSEL.SETTINGS.Bar0PermissionN",
-        hint: "COMBAT_CAROUSEL.SETTINGS.Bar0PermissionH",
+    game.settings.register(NAME, SETTING_KEYS.bar2Permission, {
+        name: "COMBAT_CAROUSEL.SETTINGS.Bar2PermissionN",
+        hint: "COMBAT_CAROUSEL.SETTINGS.Bar2PermissionH",
         scope: "world",
         type: String,
         default: "owned",
-        choices: DEFAULT_CONFIG.bar0Permission.choices,
+        choices: DEFAULT_CONFIG.bar2Permission.choices,
         config: true,
         onChange: s => {
             if (!game.user.isGM) {
@@ -287,9 +287,9 @@ export default function registerSettings() {
         }
     });
 
-    game.settings.register(NAME, SETTING_KEYS.bar0Attribute, {
-        name: "COMBAT_CAROUSEL.SETTINGS.Bar0AttributeN",
-        hint: "COMBAT_CAROUSEL.SETTINGS.Bar0AttributeH",
+    game.settings.register(NAME, SETTING_KEYS.bar2Attribute, {
+        name: "COMBAT_CAROUSEL.SETTINGS.Bar2AttributeN",
+        hint: "COMBAT_CAROUSEL.SETTINGS.Bar2AttributeH",
         scope: "world",
         type: String,
         default: "attributes.hp",
@@ -299,12 +299,12 @@ export default function registerSettings() {
         }
     });
 
-    game.settings.register(NAME, SETTING_KEYS.bar0Title, {
-        name: "COMBAT_CAROUSEL.SETTINGS.Bar0TitleN",
-        hint: "COMBAT_CAROUSEL.SETTINGS.Bar0TitleH",
+    game.settings.register(NAME, SETTING_KEYS.bar2Title, {
+        name: "COMBAT_CAROUSEL.SETTINGS.Bar2TitleN",
+        hint: "COMBAT_CAROUSEL.SETTINGS.Bar2TitleH",
         scope: "world",
         type: String,
-        default: DEFAULT_CONFIG.bar0Title,
+        default: DEFAULT_CONFIG.bar2Title,
         config: true,
         onChange: s => {
             ui.combatCarousel.render(true);

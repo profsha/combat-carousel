@@ -145,7 +145,7 @@ export default function registerHooks() {
 
         if (!templateData) return;
 
-        const combatantCard = await renderTemplate("modules/combat-carousel/templates/combatant-card.hbs", templateData);
+        const combatantCard = await renderTemplate("modules/combat-carousel-test/templates/combatant-card.hbs", templateData);
         const index = newTurns.map(t => t.id).indexOf(combatant.id) ?? -1;
         
         await ui.combatCarousel.splide.emit("addCombatant", combatantCard, index);
@@ -225,9 +225,10 @@ export default function registerHooks() {
 
         if (!enabled || ui.combatCarousel?._collapsed) return;
 
-        if (!hasProperty(updateData, "data.attributes.hp.value") &&
-            !hasProperty(updateData, "img") &&
-            !hasProperty(updateData, "data.attributes.sp.value")
+        if (!hasProperty(updateData, "data.attributes.hp.value")
+            && !hasProperty(updateData, "img")
+            && !hasProperty(updateData, "data.attributes.sp.value")
+            && !hasProperty(updateData, "data.items")
             ) return;
         // find any matching combat carousel combatants
         
@@ -251,6 +252,7 @@ export default function registerHooks() {
             && !hasProperty(updateData, "actorData.effects")
             && !hasProperty(updateData, "actorData.data.attributes.hp.value") 
             && !hasProperty(updateData, "actorData.data.attributes.sp.value")
+            && !hasProperty(updateData, "actorData.data.items")
             && !hasProperty(updateData, "img")
             && !hasProperty(updateData, "actorData.img")
         ) return;

@@ -1,6 +1,6 @@
 /**
  * CombatCarousel module
- * @module combat-carousel
+ * @module combat-carousel-test
  */
 
 import CombatCarouselConfig from "./config-form.mjs";
@@ -30,8 +30,8 @@ export default class CombatCarousel extends Application {
      */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            id: "combat-carousel",
-            template: "modules/combat-carousel/templates/combat-carousel.hbs",
+            id: "combat-carousel-test",
+            template: "modules/combat-carousel-test/templates/combat-carousel.hbs",
             popOut: false,
             top: 0,
             left: 0
@@ -260,26 +260,31 @@ export default class CombatCarousel extends Application {
             }
         }
 
-        const showBar0 = this._calculateBarVisibility(turn, "bar0", {isActive: isActiveTurn});
-        let bar0 = {};
+        const showBar2 = this._calculateBarVisibility(turn, "bar2", {isActive: isActiveTurn});
+        let bar2 = {};
 
-        const bar0AttributeSetting = game.settings.get(NAME, SETTING_KEYS.bar0Attribute);
+        const bar2AttributeSetting = game.settings.get(NAME, SETTING_KEYS.bar2Attribute);
 
-        if (token && bar0AttributeSetting ) {
-            bar0 = token.getBarAttribute("bar0", bar0AttributeSetting) ?? {};
-            bar0.title = game.settings.get(NAME, SETTING_KEYS.bar0Title);
+        if (token && bar2AttributeSetting ) {
+            bar2 = token.getBarAttribute("bar2", bar2AttributeSetting) ?? {};
+            console.log(token, 'TOKEN')
+            if (bar2) {
+                bar2.title = game.settings.get(NAME, SETTING_KEYS.bar2Title);
 
-            // Set values for HTML progress bar styling
-            if (bar0?.type === "bar") {
-                bar0.low = bar0.max * 0.34;
-                bar0.high = bar0.max * 0.6;
-                bar0.optimum = bar0.max * 0.9;
+                // Set values for HTML progress bar styling
+                if (bar2?.type === "bar") {
+                    bar2.low = bar2.max * 0.34;
+                    bar2.high = bar2.max * 0.6;
+                    bar2.optimum = bar2.max * 0.9;
+                }
             }
         }
         
 
         // @todo add some setting to configure this (Eg. for owned combatants)
         const canEditInitiative = game.user.isGM;
+
+        console.log(token, 'TOKEN PREPARED DATA')
         
         const preparedData = {
             id: turn.id,
@@ -294,8 +299,8 @@ export default class CombatCarousel extends Application {
                 owner: turn.isOwner,
                 showBar1,
                 bar1,
-                showBar0,
-                bar0,
+                showBar2,
+                bar2,
                 overlayProperties: CombatCarousel.getOverlayProperties(actor, overlaySettings),
                 overlayEffect: token?.data?.overlayEffect || null,
                 effects: this._filterActorEffects(actor),
@@ -409,8 +414,8 @@ export default class CombatCarousel extends Application {
             .on("mouseleave", event => this._onHoverOutSplide(event, html));
 
         card
-            // .on("mouseenter", event => this._onHoverCard(event, html))
-            // .on("mouseleave", event => this._onHoverOutCard(event, html))
+            .on("mouseenter", event => this._onHoverCard(event, html))
+            .on("mouseleave", event => this._onHoverOutCard(event, html))
             .on("click", event => this._onClickCard(event, html))
             .on("contextmenu", event => this._onContextMenuCard(event, html))
             .on("dblclick", event => this._onCardDoubleClick(event, html));
@@ -679,17 +684,20 @@ export default class CombatCarousel extends Application {
         const initiativeValueSelector = `${initiativeDivSelector} input`;
         const initiativeIconSelector = `${initiativeDivSelector} i.fas`;
         const bar1Selector = ".bar1";
+        const bar2Selector = ".bar2";
 
         const showOverlay = this._shouldShowElement(hoveredCard, "overlay", overlaySelector);
         const showInitiativeValue = this._shouldShowElement(hoveredCard, "initiativeValue", initiativeValueSelector);
         const showInitiativeIcon = this._shouldShowElement(hoveredCard, "initiativeIcon", initiativeIconSelector);
         const showBar1 = this._shouldShowElement(hoveredCard, "bar", bar1Selector);
+        const showBar2 = this._shouldShowElement(hoveredCard, "bar", bar2Selector);
 
         if (showOverlay) this._toggleElementVisibility(hoveredCard, overlaySelector, {show: true});
         if (showInitiativeValue) this._toggleElementVisibility(hoveredCard, initiativeValueSelector, {show: true});
         if (showInitiativeIcon) this._toggleElementVisibility(hoveredCard, initiativeIconSelector, {show: true});
         if (showInitiativeValue || showInitiativeIcon) this._toggleElementVisibility(hoveredCard, initiativeDivSelector, {show: true});
         if (showBar1) this._toggleElementVisibility(hoveredCard, bar1Selector, {show: true});
+        if (showBar2) this._toggleElementVisibility(hoveredCard, bar2Selector, {show: true});
     }
 
     /**
@@ -718,17 +726,20 @@ export default class CombatCarousel extends Application {
         const initiativeValueSelector = `${initiativeDivSelector} input`;
         const initiativeIconSelector = `${initiativeDivSelector} i.fas`;
         const bar1Selector = ".bar1";
+        const bar2Selector = ".bar2";
 
         const showOverlay = this._shouldShowElement(hoveredCard, "overlay", overlaySelector);
         const showInitiativeValue = this._shouldShowElement(hoveredCard, "initiativeValue", initiativeValueSelector);
         const showInitiativeIcon = this._shouldShowElement(hoveredCard, "initiativeIcon", initiativeIconSelector);
         const showBar1 = this._shouldShowElement(hoveredCard, "bar", bar1Selector);
+        const showBar2 = this._shouldShowElement(hoveredCard, "bar", bar2Selector);
 
         if (!showOverlay) this._toggleElementVisibility(hoveredCard, overlaySelector, {hide: true});
         if (!showInitiativeValue) this._toggleElementVisibility(hoveredCard, initiativeValueSelector, {hide: true});
         if (!showInitiativeIcon) this._toggleElementVisibility(hoveredCard, initiativeIconSelector, {hide: true});
         if (!showInitiativeValue && !showInitiativeIcon) this._toggleElementVisibility(hoveredCard, initiativeDivSelector, {hide: true});
         if (!showBar1) this._toggleElementVisibility(hoveredCard, bar1Selector, {hide: true});
+        if (!showBar2) this._toggleElementVisibility(hoveredCard, bar2Selector, {hide: true});
     }
 
     /**
@@ -1612,20 +1623,23 @@ export default class CombatCarousel extends Application {
     _toggleElementVisibility(card, elementSelector, {show=false, hide=false}={}) {
         const cardElement = this._getCardElement(card);
         const element = cardElement.querySelector(elementSelector);
-        const isHidden = element.classList.contains("hidden");
+        if (element) {
+            const isHidden = element.classList.contains("hidden");
 
-        switch (isHidden) {
-            case true:
-                if (!hide) return element.classList.remove("hidden");
-                return true;
-            
-            case false:
-                if (!show) return element.classList.add("hidden");
-                return true;
+            switch (isHidden) {
+                case true:
+                    if (!hide) return element.classList.remove("hidden");
+                    return true;
+                
+                case false:
+                    if (!show) return element.classList.add("hidden");
+                    return true;
 
-            default:
-                return false;
+                default:
+                    return false;
+            }
         }
+        return false;
     }
 
     /**
@@ -1665,23 +1679,29 @@ export default class CombatCarousel extends Application {
         const showEffectsSetting = game.settings.get(NAME, SETTING_KEYS.showEffects);
 
         const actorEffects = actor.effects?.contents;
+        const actorConditions = actor.items?.contents;
         let filteredEffects = null;
+        let test = null;
 
         switch (showEffectsSetting) {
             case "all":
-                filteredEffects = actorEffects;
+                // filteredEffects = actorEffects;
+                filteredEffects = actorConditions.filter(e => e.data.type === "condition")
                 break;
             
             case "allActive":
-                filteredEffects = actorEffects.filter(e => !e.data.disabled);
+                // filteredEffects = actorEffects.filter(e => !e.data.disabled);
+                filteredEffects = actorConditions.filter(e => e.data.type === "condition")
                 break;
             
             case "activeTemporary":
-                filteredEffects = actorEffects.filter(e => !e.data.disabled && e.isTemporary);
+                // filteredEffects = actorEffects.filter(e => !e.data.disabled && e.isTemporary);
+                filteredEffects = actorConditions.filter(e => e.data.type === "condition")
                 break;
             
             case "activePassive":
-                filteredEffects = actorEffects.filter(e => !e.data.disabled && !e.isTemporary);
+                // filteredEffects = actorEffects.filter(e => !e.data.disabled && !e.isTemporary);
+                filteredEffects = actorConditions.filter(e => e.data.type === "condition")
                 break;
         
             default:
@@ -1692,8 +1712,8 @@ export default class CombatCarousel extends Application {
         if (filteredEffects) {
             filteredEffects = filteredEffects.map(e => { 
                 return {
-                    img: e.data.icon,
-                    name: e.name ?? e.data.label
+                    img: e.img ?? e.data.img ?? e.data.icon,
+                    name: e.name ?? e.data.name ?? e.data.label
                 }
             });
         }

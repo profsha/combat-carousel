@@ -14,8 +14,14 @@ export const preloadHandlebarsTemplates = async function() {
 
     // Define template paths to load
     const templatePaths = [
-        "modules/combat-carousel/templates/combatant-card.hbs"
+        "modules/combat-carousel-test/templates/combatant-card.hbs"
     ];
+
+    console.log('LOAD TEMPLATE', _templateCache)
+
+    if (_templateCache && _templateCache["modules/combat-carousel/templates/combatant-card.hbs"]) {
+        delete _templateCache["modules/combat-carousel/templates/combatant-card.hbs"];
+    }
   
     // Load the template parts
     return loadTemplates(templatePaths);
