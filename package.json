@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/death-save/combat-carousel.git"
+    "url": "git+https://github.com/profsha/combat-carousel.git"
   },
   "keywords": [
     "fvtt",
@@ -19,9 +19,9 @@
   "author": "Evan Clarke (errational)",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/death-save/combat-carousel-public/issues"
+    "url": "https://github.com/profsha/combat-carousel-public/issues"
   },
-  "homepage": "https://github.com/death-save/combat-carousel-public#readme",
+  "homepage": "https://github.com/profsha/combat-carousel-public#readme",
   "devDependencies": {
     "@pixi/jsdoc-template": "^2.6.0",
     "gulp": "^4.0.2",
