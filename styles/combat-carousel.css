@@ -413,7 +413,12 @@ li[data-control="combat-carousel"] i.collapse-indicator {
     height: 10%;
 }
 
-#combat-carousel meter {
+#combat-carousel .bar0 {
+    text-align: center;
+    height: 10%;
+}
+
+#combat-carousel .bar1 meter {
     --background: rgba(0, 0, 0, 0.5);
     --optimum: limegreen;
     --sub-optimum: darkorange;
@@ -426,13 +431,26 @@ li[data-control="combat-carousel"] i.collapse-indicator {
     text-align: center;
 }
 
+#combat-carousel .bar0 meter {
+    --background: rgba(0, 0, 0, 0.5);
+    --optimum: cyan;
+    --sub-optimum: darkcyan;
+    --sub-sub-optimum: DarkBlue; 
+
+    display: block;
+    /* The gray background in Firefox */
+    width: 98%;
+    height: 1.2em;
+    text-align: center;
+}
+
 @supports(-moz-appearance:none) {
-    #combat-carousel meter  {
+    #combat-carousel .bar1 meter  {
         background: var(--background);
     }
 }
 
-#combat-carousel meter::-moz-meter-bar {
+#combat-carousel .bar1 meter::-moz-meter-bar {
     height: 25%;
     margin-top: 0.25em;
     background: var(--background);
@@ -440,30 +458,71 @@ li[data-control="combat-carousel"] i.collapse-indicator {
     /* box-shadow: 0 2px 2px -2px #333 inset; */
 }
 
-#combat-carousel meter:-moz-meter-optimum::-moz-meter-bar {
+#combat-carousel .bar1 meter:-moz-meter-optimum::-moz-meter-bar {
     background: var(--optimum);
 }
 
-#combat-carousel meter:-moz-meter-sub-optimum::-moz-meter-bar {
+#combat-carousel .bar1 meter:-moz-meter-sub-optimum::-moz-meter-bar {
     background: var(--sub-optimum);
 }
 
-#combat-carousel meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+#combat-carousel .bar1 meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
     background: var(--sub-sub-optimum);
 }
 
-#combat-carousel meter::-webkit-meter-bar {
+#combat-carousel .bar1 meter::-webkit-meter-bar {
     background: var(--background);
     border: 2px solid black;
     /* box-shadow: 0 2px 2px -2px #333 inset; */
     height: 100%;
 }
 
-#combat-carousel meter::-webkit-meter-optimum-value {
+#combat-carousel .bar1 meter::-webkit-meter-optimum-value {
     background: var(--optimum);
 }
 
-#combat-carousel meter::-webkit-meter-suboptimum-value {
+#combat-carousel .bar1 meter::-webkit-meter-suboptimum-value {
+    background:var(--sub-optimum);
+}
+
+@supports(-moz-appearance:none) {
+    #combat-carousel .bar0 meter  {
+        background: var(--background);
+    }
+}
+
+#combat-carousel .bar0 meter::-moz-meter-bar {
+    height: 25%;
+    margin-top: 0.25em;
+    background: var(--background);
+    border: 2px solid black;
+    /* box-shadow: 0 2px 2px -2px #333 inset; */
+}
+
+#combat-carousel .bar0 meter:-moz-meter-optimum::-moz-meter-bar {
+    background: var(--optimum);
+}
+
+#combat-carousel .bar0 meter:-moz-meter-sub-optimum::-moz-meter-bar {
+    background: var(--sub-optimum);
+}
+
+#combat-carousel .bar0 meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+    background: var(--sub-sub-optimum);
+}
+
+#combat-carousel .bar0 meter::-webkit-meter-bar {
+    background: var(--background);
+    border: 2px solid black;
+    /* box-shadow: 0 2px 2px -2px #333 inset; */
+    height: 100%;
+}
+
+#combat-carousel .bar0 meter::-webkit-meter-optimum-value {
+    background: var(--optimum);
+}
+
+#combat-carousel .bar0 meter::-webkit-meter-suboptimum-value {
     background:var(--sub-optimum);
 }
 

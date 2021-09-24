@@ -259,6 +259,23 @@ export default class CombatCarousel extends Application {
                 bar1.optimum = bar1.max * 0.9;
             }
         }
+
+        const showBar0 = this._calculateBarVisibility(turn, "bar0", {isActive: isActiveTurn});
+        let bar0 = {};
+
+        const bar0AttributeSetting = game.settings.get(NAME, SETTING_KEYS.bar0Attribute);
+
+        if (token && bar0AttributeSetting ) {
+            bar0 = token.getBarAttribute("bar0", bar0AttributeSetting) ?? {};
+            bar0.title = game.settings.get(NAME, SETTING_KEYS.bar0Title);
+
+            // Set values for HTML progress bar styling
+            if (bar0?.type === "bar") {
+                bar0.low = bar0.max * 0.34;
+                bar0.high = bar0.max * 0.6;
+                bar0.optimum = bar0.max * 0.9;
+            }
+        }
         
 
         // @todo add some setting to configure this (Eg. for owned combatants)
@@ -277,6 +294,8 @@ export default class CombatCarousel extends Application {
                 owner: turn.isOwner,
                 showBar1,
                 bar1,
+                showBar0,
+                bar0,
                 overlayProperties: CombatCarousel.getOverlayProperties(actor, overlaySettings),
                 overlayEffect: token?.data?.overlayEffect || null,
                 effects: this._filterActorEffects(actor),
@@ -389,8 +408,9 @@ export default class CombatCarousel extends Application {
         splide.on("mouseenter", event => this._onHoverSplide(event, html))
             .on("mouseleave", event => this._onHoverOutSplide(event, html));
 
-        card.on("mouseenter", event => this._onHoverCard(event, html))
-            .on("mouseleave", event => this._onHoverOutCard(event, html))
+        card
+            // .on("mouseenter", event => this._onHoverCard(event, html))
+            // .on("mouseleave", event => this._onHoverOutCard(event, html))
             .on("click", event => this._onClickCard(event, html))
             .on("contextmenu", event => this._onContextMenuCard(event, html))
             .on("dblclick", event => this._onCardDoubleClick(event, html));

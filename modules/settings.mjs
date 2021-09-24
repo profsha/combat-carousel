@@ -259,6 +259,58 @@ export default function registerSettings() {
         }
     });
 
+    game.settings.register(NAME, SETTING_KEYS.showBar0, {
+        name: "COMBAT_CAROUSEL.SETTINGS.ShowBar0N",
+        hint: "COMBAT_CAROUSEL.SETTINGS.ShowBar0H",
+        scope: "client",
+        type: String,
+        choices: DEFAULT_CONFIG.showBar.choices,
+        default: "always",
+        config: true,
+        onChange: s => {
+            ui.combatCarousel.render(true);
+        }
+    });
+
+    game.settings.register(NAME, SETTING_KEYS.bar0Permission, {
+        name: "COMBAT_CAROUSEL.SETTINGS.Bar0PermissionN",
+        hint: "COMBAT_CAROUSEL.SETTINGS.Bar0PermissionH",
+        scope: "world",
+        type: String,
+        default: "owned",
+        choices: DEFAULT_CONFIG.bar0Permission.choices,
+        config: true,
+        onChange: s => {
+            if (!game.user.isGM) {
+                ui.combatCarousel.render(true);
+            }
+        }
+    });
+
+    game.settings.register(NAME, SETTING_KEYS.bar0Attribute, {
+        name: "COMBAT_CAROUSEL.SETTINGS.Bar0AttributeN",
+        hint: "COMBAT_CAROUSEL.SETTINGS.Bar0AttributeH",
+        scope: "world",
+        type: String,
+        default: "attributes.hp",
+        config: true,
+        onChange: s => {
+            ui.combatCarousel.render(true);
+        }
+    });
+
+    game.settings.register(NAME, SETTING_KEYS.bar0Title, {
+        name: "COMBAT_CAROUSEL.SETTINGS.Bar0TitleN",
+        hint: "COMBAT_CAROUSEL.SETTINGS.Bar0TitleH",
+        scope: "world",
+        type: String,
+        default: DEFAULT_CONFIG.bar0Title,
+        config: true,
+        onChange: s => {
+            ui.combatCarousel.render(true);
+        }
+    });
+
     /* -------------------------------------------------------------------------- */
     /*                                Data Storage                                */
     /* -------------------------------------------------------------------------- */
