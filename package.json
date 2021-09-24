@@ -1,5 +1,5 @@
 {
-  "name": "combat-carousel",
+  "name": "combat-carousel-test",
   "version": "0.2.1-beta",
   "description": "A Foundry VTT module providing CRPG-style combat tracker",
   "main": "init.js",
